@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("checkstyle")
 }
 
 group = "org.example"
@@ -20,4 +21,9 @@ dependencies {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+}
+
+checkstyle {
+    maxWarnings = 0 //규칙이 어긋나는 코드가 하나라도 있으면 빌드 fail
+    configFile = file("${rootDir}/java-google-check.xml")
 }
