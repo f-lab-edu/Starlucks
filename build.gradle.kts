@@ -1,10 +1,5 @@
-plugins {
-    id("java")
-}
-
 group = "org.example"
 version = "1.0-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
 
 allprojects {
     repositories {
@@ -12,12 +7,19 @@ allprojects {
     }
 }
 
-dependencies {
-    testImplementation("org.mockito:mockito-junit-jupiter:4.11.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
-}
+subprojects {
+    apply(plugin = "java")
+    apply(plugin = "java-library")
+    apply(plugin = "checkstyle")
 
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
+    tasks.withType<Checkstyle> {
+        configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+        configProperties = mapOf("suppressionFile" to "${rootDir}/config/checkstyle/checkstyle/checkstyle-suppressions.xml")
+        maxErrors = 0
+        maxWarnings = 0
+        version = "10.6.0"
+
+        source("src/main/java")
+        include("**/*.java")
+    }
 }
