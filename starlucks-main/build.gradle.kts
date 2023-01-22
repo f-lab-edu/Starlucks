@@ -4,8 +4,9 @@ plugins {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation(project(path = ":starlucks-member"))
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.mockito:mockito-junit-jupiter:4.11.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
