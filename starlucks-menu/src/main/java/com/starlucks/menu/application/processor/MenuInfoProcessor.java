@@ -1,74 +1,46 @@
 package com.starlucks.menu.application.processor;
 
+import com.starlucks.menu.application.result.MenuInfoResult;
 import com.starlucks.menu.domain.entity.Menu;
+import com.starlucks.menu.domain.entity.MenuOption;
+import com.starlucks.menu.domain.repository.MenuOptionRepository;
 import com.starlucks.menu.domain.repository.MenuRepository;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MenuInfoProcessor {
 
     private final MenuRepository menuRepository;
+    private final MenuOptionRepository menuOptionRepository;
 
-    public MenuInfoProcessor(MenuRepository menuRepository) {
+    public MenuInfoProcessor(
+        MenuRepository menuRepository,
+        MenuOptionRepository menuOptionRepository
+    ) {
         this.menuRepository = menuRepository;
+        this.menuOptionRepository = menuOptionRepository;
     }
 
-    public List<Result> execute() {
+    public List<MenuInfoResult> execute() {
         List<Menu> menus = menuRepository.findAll();
+        List<MenuOption> menuOptions = menuOptionRepository.findAllByMenuIds(
+            menus.stream().map(Menu::getId).toList()
+        );
 
-        List<Result> results = new ArrayList<>();
-
-        for (Menu menu : menus) {
-            results.add(Result.from(menu));
-        }
-
-        return results;
+        return menus.stream().map(menu ->
+            MenuInfoResult.from(
+                menu,
+                menuOptions.stream()
+                    .filter(menuOption ->
+                        menuOption.getMenuId().equals(menu.getId())
+                    ).toList()
+            )
+        ).toList();
     }
 
-    public Result execute(Long menuId) {
+    public MenuInfoResult execute(Long menuId) {
         Menu menu = menuRepository.findById(menuId);
+        List<MenuOption> menuOptions = menuOptionRepository.findAllByMenuId(menu.getId());
 
-        return Result.from(menu);
-    }
-
-    public static class Command {
-        private final Long menuId;
-
-        public Command(Long menuId) {
-            this.menuId = menuId;
-        }
-
-        public Long getMenuId() {
-            return menuId;
-        }
-    }
-
-    public static class Result {
-
-        private final long menuId;
-        private final String menuName;
-        private final long price;
-
-        public static Result from(Menu menu) {
-            return new Result(menu.getId(), menu.getName(), menu.getPrice());
-        }
-
-        public Result(long menuId, String menuName, long price) {
-            this.menuId = menuId;
-            this.menuName = menuName;
-            this.price = price;
-        }
-
-        public long getMenuId() {
-            return menuId;
-        }
-
-        public String getMenuName() {
-            return menuName;
-        }
-
-        public long getPrice() {
-            return price;
-        }
+        return MenuInfoResult.from(menu, menuOptions);
     }
 }

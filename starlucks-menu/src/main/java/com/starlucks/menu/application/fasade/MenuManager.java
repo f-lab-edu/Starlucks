@@ -1,12 +1,15 @@
 package com.starlucks.menu.application.fasade;
 
+import com.starlucks.menu.application.command.MenuAddCommand;
+import com.starlucks.menu.application.command.MenuInfoCommand;
 import com.starlucks.menu.application.processor.MenuAddProcessor;
 import com.starlucks.menu.application.processor.MenuInfoProcessor;
+import com.starlucks.menu.application.result.MenuInfoResult;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MenuManager {
+public final class MenuManager {
 
     private final MenuInfoProcessor menuInfoProcessor;
     private final MenuAddProcessor menuAddProcessor;
@@ -16,15 +19,15 @@ public class MenuManager {
         this.menuAddProcessor = menuAddProcessor;
     }
 
-    public List<MenuInfoProcessor.Result> getMenus() {
+    public List<MenuInfoResult> getMenus() {
         return menuInfoProcessor.execute();
     }
 
-    public MenuInfoProcessor.Result getMenu(MenuInfoProcessor.Command command) {
-        return menuInfoProcessor.execute(command.getMenuId());
+    public MenuInfoResult getMenu(MenuInfoCommand command) {
+        return menuInfoProcessor.execute(command.menuId());
     }
 
-    public Long addMenu(MenuAddProcessor.Command command) {
-        return menuAddProcessor.execute(command);
+    public Long addMenu(MenuAddCommand menuAddCommand) {
+        return menuAddProcessor.execute(menuAddCommand);
     }
 }

@@ -1,8 +1,8 @@
 package com.starlucks.menu.presentation;
 
 import com.starlucks.common.ApiResponse;
+import com.starlucks.menu.application.command.MenuInfoCommand;
 import com.starlucks.menu.application.fasade.MenuManager;
-import com.starlucks.menu.application.processor.MenuInfoProcessor;
 import com.starlucks.menu.presentation.request.MenuAddRequest;
 import com.starlucks.menu.presentation.response.MenuInfoResponse;
 import java.util.List;
@@ -33,12 +33,12 @@ public final class MenuController {
     @GetMapping(path = "/{menuId}", name = "메뉴 조회")
     public ApiResponse<MenuInfoResponse> getMenu(@PathVariable Long menuId) {
         return ApiResponse.success(
-            MenuInfoResponse.from(menuManager.getMenu(new MenuInfoProcessor.Command(menuId)))
+            MenuInfoResponse.from(menuManager.getMenu(new MenuInfoCommand(menuId)))
         );
     }
 
     @PostMapping(name = "메뉴 추가")
     public ApiResponse<Long> addMenu(@RequestBody MenuAddRequest menuAddRequest) {
-        return ApiResponse.success(menuManager.addMenu(menuAddRequest.toCommand()));
+        return ApiResponse.success(menuManager.addMenu(menuAddRequest.toMenuAddCommand()));
     }
 }

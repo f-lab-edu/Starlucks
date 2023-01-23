@@ -1,41 +1,30 @@
 package com.starlucks.menu.presentation.response;
 
-import com.starlucks.menu.application.processor.MenuInfoProcessor;
-import java.util.ArrayList;
+import com.starlucks.common.Codes.Size;
+import com.starlucks.menu.application.result.MenuInfoResult;
 import java.util.List;
 
-public final class MenuInfoResponse {
+public record MenuInfoResponse(
+    long menuId,
+    String menuName,
+    long price,
+    Size size,
+    List<MenuOptionInfoResponse> menuOptionInfoResponse
+) {
 
-    private final long menuId;
-    private final String menuName;
-
-    public static List<MenuInfoResponse> from(List<MenuInfoProcessor.Result> results) {
-        List<MenuInfoResponse> menuInfoResponses = new ArrayList<>();
-
-        for (MenuInfoProcessor.Result result : results) {
-            menuInfoResponses.add(new MenuInfoResponse(result.getMenuId(), result.getMenuName()));
-        }
-
-        return menuInfoResponses;
+    public static List<MenuInfoResponse> from(List<MenuInfoResult> results) {
+        return results.stream().map(MenuInfoResponse::from).toList();
     }
 
-    public static MenuInfoResponse from(MenuInfoProcessor.Result result) {
+    public static MenuInfoResponse from(MenuInfoResult menuInfoResult) {
         return new MenuInfoResponse(
-            result.getMenuId(),
-            result.getMenuName()
+            menuInfoResult.menuId(),
+            menuInfoResult.menuName(),
+            menuInfoResult.price(),
+            menuInfoResult.size(),
+            menuInfoResult.menuOptionInfoResults().stream()
+                .map(MenuOptionInfoResponse::from)
+                .toList()
         );
-    }
-
-    public MenuInfoResponse(long menuId, String menuName) {
-        this.menuId = menuId;
-        this.menuName = menuName;
-    }
-
-    public long getMenuId() {
-        return menuId;
-    }
-
-    public String getMenuName() {
-        return menuName;
     }
 }
