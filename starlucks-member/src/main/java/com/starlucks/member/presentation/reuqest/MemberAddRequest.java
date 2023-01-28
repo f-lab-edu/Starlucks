@@ -1,28 +1,32 @@
-package com.starlucks.member.domain.entity;
+package com.starlucks.member.presentation.reuqest;
 
-public class Member {
+import com.starlucks.member.application.command.MemberAddCommand;
 
-    private Long id;
+public class MemberAddRequest {
     private String nickname;
     private String email;
+
+
     private String password;
+
+
     private String phoneNumber;
 
-    public Member(String nickname, String email, String password) {
-        this.id = id;
+
+    public MemberAddRequest(String email, String password, String nickname, String phoneNumber) {
         this.nickname = nickname;
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
     }
 
-    public Long getId() {
-        return id;
+    public MemberAddCommand toCommand() {
+        return new MemberAddCommand(email, password, nickname, phoneNumber);
     }
 
     public String getNickname() {
         return nickname;
     }
-
 
     public String getEmail() {
         return email;
