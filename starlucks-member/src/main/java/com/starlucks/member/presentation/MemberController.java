@@ -1,7 +1,6 @@
 package com.starlucks.member.presentation;
 
 import com.starlucks.common.ApiResponse;
-import com.starlucks.member.application.command.MemberAddCommand;
 import com.starlucks.member.application.fasade.MemberManager;
 import com.starlucks.member.presentation.reuqest.MemberAddRequest;
 import org.springframework.web.bind.annotation.PostMapping;

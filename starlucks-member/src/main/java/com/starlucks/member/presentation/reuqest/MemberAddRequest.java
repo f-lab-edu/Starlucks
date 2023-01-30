@@ -10,18 +10,19 @@ public class MemberAddRequest {
     private String password;
 
 
-    private String phoneNumber;
+
+    private String phonenumber;
 
 
     public MemberAddRequest(String email, String password, String nickname, String phoneNumber) {
         this.nickname = nickname;
         this.email = email;
         this.password = password;
-        this.phoneNumber = phoneNumber;
+        this.phonenumber = phoneNumber;
     }
 
     public MemberAddCommand toCommand() {
-        return new MemberAddCommand(email, password, nickname, phoneNumber);
+        return new MemberAddCommand(email, password, nickname, phonenumber);
     }
 
     public String getNickname() {
@@ -36,7 +37,8 @@ public class MemberAddRequest {
         return password;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhonenumber() {
+        return phonenumber;
     }
+
 }
