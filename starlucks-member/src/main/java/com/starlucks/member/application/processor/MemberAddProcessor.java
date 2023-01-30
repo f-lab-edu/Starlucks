@@ -7,16 +7,12 @@ import com.starlucks.member.infrastructure.generator.MemberIdGenerator;
 public class MemberAddProcessor {
 
     private final MemberRepository memberRepository;
-    private final MemberIdGenerator memberIdGenerator;
 
     public MemberAddProcessor(
-        MemberRepository memberRepository,
-        MemberIdGenerator memberIdGenerator
+        MemberRepository memberRepository
     ) {
         this.memberRepository = memberRepository;
-        this.memberIdGenerator = memberIdGenerator;
     }
-
 
     public void excute(MemberAddCommand command) {
         memberRepository.save(command.from(command.getPassword()));
