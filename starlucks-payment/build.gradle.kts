@@ -7,6 +7,7 @@ dependencies {
     implementation(project(path = ":starlucks-common", configuration = null))
 
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
 }
 
 tasks {
