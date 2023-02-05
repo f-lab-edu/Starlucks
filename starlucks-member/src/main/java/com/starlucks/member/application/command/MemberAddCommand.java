@@ -1,6 +1,6 @@
 package com.starlucks.member.application.command;
 
-import com.starlucks.member.domain.entity.Member;
+import com.starlucks.member.domain.entity.MemberAdd;
 
 public class MemberAddCommand {
     private String nickname;
@@ -20,8 +20,8 @@ public class MemberAddCommand {
         this.phoneNumber = phoneNumber;
     }
 
-    public Member from(String password) {
-        return new Member(
+    public MemberAdd from(String password) {
+        return new MemberAdd(
             this.nickname,
             password,
             this.email

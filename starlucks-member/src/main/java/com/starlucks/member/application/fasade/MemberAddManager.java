@@ -5,11 +5,11 @@ import com.starlucks.member.application.processor.MemberAddProcessor;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MemberManager {
+public class MemberAddManager {
 
     private final MemberAddProcessor memberAddProcessor;
 
-    public MemberManager(MemberAddProcessor memberAddProcessor) {
+    public MemberAddManager(MemberAddProcessor memberAddProcessor) {
         this.memberAddProcessor = memberAddProcessor;
     }
 

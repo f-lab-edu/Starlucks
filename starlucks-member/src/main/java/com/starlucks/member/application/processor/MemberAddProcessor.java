@@ -1,20 +1,19 @@
 package com.starlucks.member.application.processor;
 
 import com.starlucks.member.application.command.MemberAddCommand;
-import com.starlucks.member.domain.repository.MemberRepository;
-import com.starlucks.member.infrastructure.generator.MemberIdGenerator;
+import com.starlucks.member.domain.repository.MemberAddRepository;
 
 public class MemberAddProcessor {
 
-    private final MemberRepository memberRepository;
+    private final MemberAddRepository memberAddRepository;
 
     public MemberAddProcessor(
-        MemberRepository memberRepository
+        MemberAddRepository memberAddRepository
     ) {
-        this.memberRepository = memberRepository;
+        this.memberAddRepository = memberAddRepository;
     }
 
     public void excute(MemberAddCommand command) {
-        memberRepository.save(command.from(command.getPassword()));
+        memberAddRepository.save(command.from(command.getPassword()));
     }
 }

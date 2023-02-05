@@ -1,6 +1,6 @@
 package com.starlucks.member.domain.entity;
 
-public class Member {
+public class MemberAdd {
 
     private Long id;
     private String nickname;
@@ -8,7 +8,7 @@ public class Member {
     private String password;
     private String phoneNumber;
 
-    public Member(String nickname, String email, String password) {
+    public MemberAdd(String nickname, String email, String password) {
         this.id = id;
         this.nickname = nickname;
         this.email = email;

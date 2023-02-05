@@ -1,7 +1,7 @@
 package com.starlucks.member.presentation;
 
 import com.starlucks.common.ApiResponse;
-import com.starlucks.member.application.fasade.MemberManager;
+import com.starlucks.member.application.fasade.MemberAddManager;
 import com.starlucks.member.presentation.reuqest.MemberAddRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/member")
-public final class MemberController {
+public final class MemberAddController {
 
-    private final MemberManager memberManager;
+    private final MemberAddManager memberAddManager;
 
-    public MemberController(MemberManager memberManager) {
-        this.memberManager = memberManager;
+    public MemberAddController(MemberAddManager memberAddManager) {
+        this.memberAddManager = memberAddManager;
     }
 
     @PostMapping(value = "/signUp", name = "회원 가입")
     public ApiResponse<Long> signUp(@RequestBody MemberAddRequest request) {
-        memberManager.memberCreate(request.toCommand());
+        memberAddManager.memberCreate(request.toCommand());
         return ApiResponse.success(null);
     }
 }
