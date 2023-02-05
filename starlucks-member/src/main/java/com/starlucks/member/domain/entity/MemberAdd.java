@@ -6,7 +6,6 @@ public class MemberAdd {
     private String nickname;
     private String email;
     private String password;
-    private String phoneNumber;
 
     public MemberAdd(String nickname, String email, String password) {
         this.id = id;
@@ -32,7 +31,4 @@ public class MemberAdd {
         return password;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
 }
