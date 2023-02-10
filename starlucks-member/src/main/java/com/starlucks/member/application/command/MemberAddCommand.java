@@ -3,25 +3,27 @@ package com.starlucks.member.application.command;
 import com.starlucks.member.domain.entity.MemberAdd;
 
 public class MemberAddCommand {
+    private Long id;
     private String nickname;
     private String email;
     private String password;
-    private String phoneNumber;
 
 
     public MemberAddCommand(
+        Long id,
         String nickname,
         String email,
-        String password,
-        String phoneNumber) {
+        String password) {
+        this.id = id;
         this.nickname = nickname;
         this.email = email;
         this.password = password;
-        this.phoneNumber = phoneNumber;
     }
 
-    public MemberAdd from(String password) {
+
+    public MemberAdd from(Long id, String password) {
         return new MemberAdd(
+            this.id,
             this.nickname,
             password,
             this.email
@@ -38,9 +40,5 @@ public class MemberAddCommand {
 
     public String getPassword() {
         return password;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
     }
 }
