@@ -20,6 +20,5 @@ public final class PaymentController {
     @PostMapping
     public void pay(@RequestBody final PaymentPayRequest paymentPayRequest) {
         paymentFacade.pay(paymentPayRequest.toCommand());
-
     }
 }

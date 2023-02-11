@@ -9,6 +9,8 @@ public class PaymentPayRequest {
     private long orderId;
     @NotNull
     private long amount;
+    @NotNull
+    private String paymentTarget;
 
     protected PaymentPayRequest() {
     }
@@ -21,7 +23,11 @@ public class PaymentPayRequest {
         return amount;
     }
 
+    public String getPaymentTarget() {
+        return paymentTarget;
+    }
+
     public PaymentPayCommand toCommand() {
-        return new PaymentPayCommand(orderId, amount);
+        return new PaymentPayCommand(orderId, amount, paymentTarget);
     }
 }

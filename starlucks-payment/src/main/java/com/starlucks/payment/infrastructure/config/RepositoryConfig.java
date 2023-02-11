@@ -1,6 +1,6 @@
 package com.starlucks.payment.infrastructure.config;
 
-import com.starlucks.payment.infrastructure.persistence.InMemoryTossPaymentRepository;
+import com.starlucks.payment.infrastructure.persistence.InMemoryPaymentRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class RepositoryConfig {
 
     @Bean
-    public InMemoryTossPaymentRepository inMemoryMenuRepository() {
-        return new InMemoryTossPaymentRepository();
+    public InMemoryPaymentRepository inMemoryMenuRepository() {
+        return new InMemoryPaymentRepository();
     }
 }
