@@ -20,14 +20,6 @@ public class MemberAddCommand {
         this.phoneNumber = phoneNumber;
     }
 
-    public Member from(String password) {
-        return new Member(
-            this.nickname,
-            password,
-            this.email
-        );
-    }
-
     public String getNickname() {
         return nickname;
     }

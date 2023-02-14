@@ -14,7 +14,7 @@ public class MemberManager {
     }
 
     public void memberCreate(MemberAddCommand command) {
-        memberAddProcessor.excute(command);
+        memberAddProcessor.execute(command);
     }
 
 }

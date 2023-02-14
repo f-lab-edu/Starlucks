@@ -1,19 +1,13 @@
 package com.starlucks.member.infrastructure.config;
 
-import com.starlucks.member.domain.entity.Member;
-import com.starlucks.member.domain.repository.MemberRepository;
+import com.starlucks.member.infrastructure.persistence.InMemoryMemberAddRepository;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class MemberRepositoryConfig {
     @Bean
-    public MemberRepository memberRepository() {
-        return new MemberRepository() {
-            @Override
-            public Member save(Member member) {
-                return null;
-            }
-        };
+    public InMemoryMemberAddRepository inMemoryMemberAddRepository() {
+        return new InMemoryMemberAddRepository();
     }
 }
