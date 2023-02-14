@@ -1,8 +1,7 @@
 package com.starlucks.payment.infrastructure.config;
 
-import com.starlucks.payment.application.processor.impl.PaymentProcessor;
-import com.starlucks.payment.domain.repository.PaymentRepository;
-import com.starlucks.payment.infrastructure.generator.PaymentIdGenerator;
+import com.starlucks.payment.application.CompositionPayment;
+import com.starlucks.payment.application.processor.PaymentProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class PaymentConfig {
 
     @Bean
-    public PaymentProcessor paymentProcessor(PaymentRepository paymentRepository) {
-        return new PaymentProcessor(paymentRepository, new PaymentIdGenerator());
+    public PaymentProcessor paymentProcessor(CompositionPayment paymentFactory) {
+        return new PaymentProcessor(paymentFactory);
     }
 }
