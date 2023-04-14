@@ -7,6 +7,6 @@ create table `order`
     total_price int unsigned comment '총 금액',
     `status`    varchar(32)     not null default 'WAIT' comment '상태',
     create_dtm  datetime                 default current_timestamp comment '생성일시',
-    update_dtm  datetime                 default null on update current_timestamp comment '수정일시',
+    update_dtm  datetime                 default null comment '수정일시',
     constraint primary key (id)
 ) comment '주문';

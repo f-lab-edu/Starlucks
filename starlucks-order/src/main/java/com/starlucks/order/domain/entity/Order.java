@@ -1,6 +1,5 @@
 package com.starlucks.order.domain.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -10,26 +9,31 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
-@Table(name = "order")
+@Table(name = "\"order\"")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long storeId;
-    private Long userId;
+    private Long memberId;
     private Long paymentId;
     private Long totalPrice;
     private String status;
-    @Column(insertable = false, updatable = false)
+    @CreatedDate
     private LocalDateTime createDtm;
-    @Column(insertable = false, updatable = false)
+    @LastModifiedDate
     private LocalDateTime updateDtm;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     private List<OrderLineItem> orderLineItems = List.of();
+
+    public Order() {
+    }
 
     public Long getId() {
         return id;
@@ -39,8 +43,8 @@ public class Order {
         return storeId;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getMemberId() {
+        return memberId;
     }
 
     public Long getPaymentId() {

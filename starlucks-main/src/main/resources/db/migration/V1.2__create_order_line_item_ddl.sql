@@ -6,6 +6,6 @@ create table order_line_item
     size       varchar(16)     not null comment '사이즈',
     price      int             not null comment '금액',
     create_dtm datetime default current_timestamp comment '생성 일시',
-    update_dtm datetime default null on update current_timestamp comment '수정 일시',
+    update_dtm datetime default null comment '수정 일시',
     constraint primary key (id)
 ) comment '주문 라인 항목';

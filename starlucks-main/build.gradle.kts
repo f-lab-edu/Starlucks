@@ -6,6 +6,7 @@ plugins {
 dependencies {
     implementation(project(path = ":starlucks-member"))
     implementation(project(path = ":starlucks-payment"))
+    implementation(project(path = ":starlucks-order"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("mysql:mysql-connector-java")
     implementation("org.flywaydb:flyway-core:9.8.1")
