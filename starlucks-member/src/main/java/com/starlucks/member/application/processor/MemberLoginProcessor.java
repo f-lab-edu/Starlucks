@@ -19,8 +19,8 @@ public class MemberLoginProcessor {
     private final MemberToken memberToken;
     private final TokenRepository tokenRepository;
     private final EncryptionPassword encryptionPassword;
-
     private final Long tokenExpireSec;
+
     public MemberLoginProcessor(
         MemberRepository memberRepository,
         MemberToken memberToken,
